@@ -113,9 +113,9 @@ def save_atomic(writer, filepath, audio, sample_rate):
     fd, tmp_path = tempfile.mkstemp(prefix=".out_", suffix=".wav", dir=directory)
     os.close(fd)
     try:
-        # Писать всегда во временный файл: подмена пути на финальный означала бы
-        # запись поверх прежнего WAV, то есть ровно тот дефект, от которого эта
-        # функция защищает. Тестовая заглушка смотрит на basename после os.replace.
+        # Именно tmp_path, а не filepath: writer обязан писать во временный файл,
+        # иначе подмена ведётся поверх прежнего WAV — ровно тот дефект, от которого
+        # эта функция защищает (при --resume в staging лежат жёсткие ссылки).
         writer(tmp_path, audio, sample_rate)
         os.replace(tmp_path, filepath)
     except BaseException:
