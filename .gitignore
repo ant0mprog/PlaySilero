@@ -1,0 +1,15 @@
+# сгенерированные артефакты прогона: вход пользователя и результат синтеза
+input.txt
+silero_input.txt
+silero_output/
+silero_output.new/
+silero_output.old/
+list.txt
+*.wav
+
+# кэш python
+__pycache__/
+*.py[cod]
+
+# логи прогонов (--log)
+*.log
